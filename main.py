@@ -1,6 +1,5 @@
 from collections import defaultdict, UserDict
 from datetime import datetime, timedelta
-import pickle
 
 
 class Field:
@@ -258,23 +257,9 @@ def delete_birthday(args, contacts):
     else:
         return "Contact not found."
 
-import pickle
-
-def save_data(book, filename="addressbook.pkl"):
-    with open(filename, "wb") as f:
-        pickle.dump(book, f)
-
-def load_data(filename="addressbook.pkl"):
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except FileNotFoundError:
-        return AddressBook()  # Повернення нової адресної книги, якщо файл не знайдено
-
 
 def main():
-    book = load_data()
-
+    book = AddressBook()
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
@@ -308,7 +293,6 @@ def main():
         else:
             print("Invalid command.")
 
-save_data(AddressBook)
 
 if __name__ == "__main__":
     main()
